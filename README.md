@@ -1,4 +1,4 @@
-## 快速开发工程模版——Flutter
+## 快速开发工程模版——Flutter：适用Android、windows、ios等全平台
 
 ```
 这是基于Flutter开发框架的快速开发模版。
