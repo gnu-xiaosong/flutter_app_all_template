@@ -1,0 +1,18 @@
+{
+    "name": "xxx",
+    "time": "xxxxx",
+    "version": "v1.0",
+    "author": "xxxx",
+    "company?": "xxxxx",
+    "address": "xxxxx",
+    "email?": "xxxxx",
+    "url": "xxxxxx",
+    "descriptions?": "xxxxxxx",
+    "license?": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZW1pdA=="
+    }
+}
