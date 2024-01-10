@@ -1,5 +1,8 @@
 ## 快速开发工程模版——Flutter：适用Android、windows、ios等全平台
 
+
+## 提示
+* 适用Android的：https://github.com/gnu-xiaosong/flutter_app_Android_template
 ```
 这是基于Flutter开发框架的快速开发模版。
 ```
