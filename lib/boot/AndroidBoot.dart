@@ -18,6 +18,7 @@ class AndroidBoot extends StatefulWidget {
 class _AndroidBootState extends State<AndroidBoot> {
   @override
   Widget build(BuildContext context) {
+    print("------------------Android-----------------");
     return Consumer3<DescState, ThemeState, DarkState>(
         builder: (BuildContext context, desc, themeState, darkState, child) =>
             MaterialApp(

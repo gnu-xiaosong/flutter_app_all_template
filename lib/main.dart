@@ -1,25 +1,41 @@
 import 'package:app_template/boot/AndroidBoot.dart';
-import 'package:app_template/boot/WindowsBoot.dart';
+// import 'package:app_template/boot/WindowsBoot.dart';
 import 'package:app_template/states/DarkState.dart';
 import 'package:app_template/states/DescState.dart';
+import 'package:app_template/states/OtherState.dart';
 import 'package:app_template/states/ThemeState.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'dart:io';
 //全局变量
+import 'boot/WindowsBoot.dart';
 import 'common/GlobalManager.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 void main() => GlobalManager.init().then((e) async {
       await EasyLocalization.ensureInitialized();
-      runApp(
-        EasyLocalization(
-            supportedLocales: const [Locale('en', 'US'), Locale('zh', 'CN')],
-            path:
-                'assets/translations', // <-- change the path of the translation files
-            child: const App()),
-      );
+
+      runApp(GetMaterialApp(
+          home: EasyLocalization(
+              supportedLocales: const [Locale('en', 'US'), Locale('zh', 'CN')],
+              path:
+                  'assets/translations', // <-- change the path of the translation files
+              child: const App())));
+
+      if (Platform.isWindows || Platform.isMacOS || Platform.isLinux)
+        // 初始化自定义窗口
+        doWhenWindowReady(() {
+          final win = appWindow;
+          const initialSize = Size(1000, 650);
+          win.minSize = initialSize;
+          win.size = initialSize;
+          win.alignment = Alignment.center;
+          win.title = "Custom window with Flutter";
+          win.show();
+        });
     });
 
 class App extends StatefulWidget {
@@ -40,7 +56,9 @@ class _AppState extends State<App> {
           //全局主题共享状态
           ChangeNotifierProvider<ThemeState>(create: (_) => ThemeState()),
           //全局暗夜模式
-          ChangeNotifierProvider<DarkState>(create: (_) => DarkState())
+          ChangeNotifierProvider<DarkState>(create: (_) => DarkState()),
+          //其他控制状态
+          ChangeNotifierProvider<OtherState>(create: (_) => OtherState())
         ],
         child: RefreshConfiguration(
             //----------------- 下拉刷新全局配置-------------------

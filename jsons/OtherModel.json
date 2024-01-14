@@ -1,0 +1,8 @@
+{
+  "comments": {
+    "topIndex": "windows侧边栏的tab索引index值",
+    "isMaximized": "windows缩放窗口图标是否缩放：true or false"
+  },
+  "topIndex": 0,
+  "isMaximized": true
+}

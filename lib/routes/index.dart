@@ -17,7 +17,7 @@ import '../pages/logins/login1/Login1.dart';
 
 //路由表
 Map<String, WidgetBuilder> routes = {
-  "/": (context) => const WindowsLayout(),
+  "/": (context) => const MobileLayout1(),
   //const MobileLayout1(), //注册根路由:默认第一个为系统根路由： initialRoute: "/",
   "home": (context) => const MobileLayout1(), // home 页路由
   "introduce": (context) => Introduction1(), //介绍页路由

@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   battery_plus
+  bitsdojo_window_windows
   connectivity_plus
   share_plus
   system_theme

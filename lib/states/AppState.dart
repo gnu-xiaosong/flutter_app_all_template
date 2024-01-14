@@ -16,15 +16,12 @@ class AppState extends ChangeNotifier {
   */
   //1.获取全局变量:用户信息
   UserModel get userInfo => GlobalManager.userInfo;
-  
-
 
   /*
   * desc: 重写noticefy方法，便于自定义更新通知给依赖的Widget更新
   */
   @override
   void notifyListeners() {
-
     print("调用了更新");
     // 1.保存全局变量信息
     GlobalManager.saveGlobalInfo();

@@ -106,6 +106,7 @@ class AppConfig extends ToolsManager {
   static Map<String, dynamic> appConfig = {
     "name": "app",
     "time": "xxxxx",
+    "icon": 'assets/icons/twitter.svg', //logo图标
     "version": "v1.0",
     "author": "xxxx",
     "company?": "xxxxx",

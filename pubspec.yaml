@@ -64,6 +64,8 @@ dependencies:
   flutter_speed_dial: ^7.0.0
   fluent_ui: ^4.8.4
   system_theme: ^2.3.1
+  bitsdojo_window: ^0.1.6
+  get: ^4.6.6
 
 #开发环境依赖
 dev_dependencies:
