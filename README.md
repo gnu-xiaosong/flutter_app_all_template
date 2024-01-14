@@ -36,9 +36,12 @@ V1.0
 * web
 
 ### 模版
+* Android端
+![img_2.png](img_2.png)
 * Windows端
 ![img.png](img.png)
-
+* Macos端
+![img_1.png](img_1.png)
 ### 开发环境
 
 * 语言：Dart

@@ -99,7 +99,8 @@ class MaterialApplication extends StatefulWidget {
 class _MaterialApplicationState extends State<MaterialApplication> {
   @override
   Widget build(BuildContext context) {
-    return MacosBoot();
+    // return MacosBoot();
+    return AndroidBoot();
     //根据平台自定义选着平台
     if (Platform.isIOS) {
       // 1.移动端(ios端)
