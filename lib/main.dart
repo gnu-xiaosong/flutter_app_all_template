@@ -100,7 +100,7 @@ class _MaterialApplicationState extends State<MaterialApplication> {
   @override
   Widget build(BuildContext context) {
     // return MacosBoot();
-    return AndroidBoot();
+    // return AndroidBoot();
     //根据平台自定义选着平台
     if (Platform.isIOS) {
       // 1.移动端(ios端)
@@ -115,5 +115,7 @@ class _MaterialApplicationState extends State<MaterialApplication> {
       // 4.Android
       return AndroidBoot();
     }
+
+    return WindowsBoot();
   }
 }
