@@ -1,4 +1,5 @@
 import 'package:app_template/boot/AndroidBoot.dart';
+import 'package:app_template/boot/MacosBoot.dart';
 // import 'package:app_template/boot/WindowsBoot.dart';
 import 'package:app_template/states/DarkState.dart';
 import 'package:app_template/states/DescState.dart';
@@ -15,6 +16,8 @@ import 'boot/WindowsBoot.dart';
 import 'common/GlobalManager.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import 'config/WinConfig.dart';
+
 void main() => GlobalManager.init().then((e) async {
       await EasyLocalization.ensureInitialized();
 
@@ -25,8 +28,8 @@ void main() => GlobalManager.init().then((e) async {
                   'assets/translations', // <-- change the path of the translation files
               child: const App())));
 
+      // 初始化自定义窗口
       if (Platform.isWindows || Platform.isMacOS || Platform.isLinux)
-        // 初始化自定义窗口
         doWhenWindowReady(() {
           final win = appWindow;
           const initialSize = Size(1000, 650);
@@ -96,6 +99,7 @@ class MaterialApplication extends StatefulWidget {
 class _MaterialApplicationState extends State<MaterialApplication> {
   @override
   Widget build(BuildContext context) {
+    return MacosBoot();
     //根据平台自定义选着平台
     if (Platform.isIOS) {
       // 1.移动端(ios端)
@@ -105,8 +109,10 @@ class _MaterialApplicationState extends State<MaterialApplication> {
       return WindowsBoot();
     } else if (Platform.isMacOS) {
       // 3.macos端
+      return MacosBoot();
+    } else if (Platform.isAndroid) {
+      // 4.Android
+      return AndroidBoot();
     }
-    // 默认Android
-    return AndroidBoot();
   }
 }

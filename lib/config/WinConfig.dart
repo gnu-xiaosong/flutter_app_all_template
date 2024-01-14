@@ -7,9 +7,12 @@
  */
 
 import 'package:app_template/config/AppConfig.dart';
+import 'package:app_template/widgets/tabViews/MacosTabView1.dart';
 import 'package:app_template/widgets/tabViews/WindowsTabView1.dart';
 import 'package:fluent_ui/fluent_ui.dart';
-
+import 'package:flutter/cupertino.dart';
+import 'package:macos_ui/macos_ui.dart';
+import 'dart:io';
 import '../widgets/tabViews/TabView2.dart';
 import '../widgets/tabViews/TabView3.dart';
 import '../widgets/tabViews/TabView4.dart';
@@ -25,41 +28,72 @@ class WinConfig extends AppConfig {
   static List<Map> tabBarBodyItems = [
     {
       "title": "home",
-      "icon": Icon(FluentIcons.home),
+      "icon": MacosIcon(CupertinoIcons.home),
+
+      // Icon(
+      //   Platform.isWindows ? FluentIcons.home : CupertinoIcons.home,
+      //   size: 15,
+      // ),
       "enabled": true,
-      "body": WindowsTabView1(),
+      "body":
+          MacosTabView1(), // Platform.isWindows ? WindowsTabView1() : MacosTabView1(),
       "items": []
     },
     {
       "title": "shopping",
-      "icon": Icon(FluentIcons.shop),
+      "icon": MacosIcon(CupertinoIcons.home),
+
+      // Icon(
+      //   Platform.isMacOS ? FluentIcons.shop : CupertinoIcons.shopping_cart,
+      //   size: 15,
+      // ),
       "enabled": true,
       "body": TabView2(),
       "items": []
     },
     {
       "title": "person",
-      "icon": Icon(FluentIcons.people_repeat),
+      "icon": MacosIcon(CupertinoIcons.person),
+
+      // Icon(
+      //   FluentIcons.people_repeat,
+      //   size: 15,
+      // ),
       "enabled": true,
       "body": TabView3(),
       "items": []
     },
     {
       "title": "browser",
-      "icon": Icon(FluentIcons.browser_screen_shot),
+      "icon": MacosIcon(CupertinoIcons.bag_badge_minus),
+
+      // Icon(
+      //   FluentIcons.browser_screen_shot,
+      //   size: 15,
+      // ),
       "enabled": true,
       "body": TabView4(),
       "items": [
         {
           "title": "home",
-          "icon": Icon(FluentIcons.home),
+          "icon": MacosIcon(CupertinoIcons.bag_badge_minus),
+
+          // Icon(
+          //   FluentIcons.home,
+          //   size: 15,
+          // ),
           "enabled": true,
           "body": _NavigationBodyItem(),
           "items": []
         },
         {
           "title": "shopping",
-          "icon": Icon(FluentIcons.shop),
+          "icon": MacosIcon(CupertinoIcons.bag_badge_minus),
+
+          // Icon(
+          //   FluentIcons.shop,
+          //   size: 15,
+          // ),
           "enabled": true,
           "body": _NavigationBodyItem(),
           "items": []
@@ -74,7 +108,9 @@ class WinConfig extends AppConfig {
       "title": "setting",
       "icon": Icon(FluentIcons.settings),
       "onTap": () {
-        showContentDialog(context!);
+        print("setting");
+        // showContentDialogMacos(context!);
+        // showContentDialog(context!);
       }
     },
     {
@@ -101,7 +137,7 @@ Widget _NavigationBodyItem(
 }
 
 //弹窗
-void showContentDialog(BuildContext context) async {
+void showContentDialogWin(BuildContext context) async {
   final result = await showDialog<String>(
     context: context,
     builder: (context) => ContentDialog(
@@ -122,6 +158,29 @@ void showContentDialog(BuildContext context) async {
           onPressed: () => Navigator.pop(context, 'User canceled dialog'),
         ),
       ],
+    ),
+  );
+}
+
+void showContentDialogMacos(BuildContext context) {
+  showMacosAlertDialog(
+    context: context,
+    builder: (_) => MacosAlertDialog(
+      appIcon: FlutterLogo(size: 64),
+      title: Text(
+        'Alert Dialog with Primary Action',
+        style: MacosTheme.of(context).typography.headline,
+      ),
+      message: Text(
+        'This is an alert dialog with a primary action and no secondary action',
+        textAlign: TextAlign.center,
+        style: MacosTypography.of(context).headline,
+      ),
+      primaryButton: PushButton(
+        controlSize: ControlSize.large,
+        child: Text('Primary'),
+        onPressed: () {},
+      ),
     ),
   );
 }

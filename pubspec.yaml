@@ -66,6 +66,7 @@ dependencies:
   system_theme: ^2.3.1
   bitsdojo_window: ^0.1.6
   get: ^4.6.6
+  macos_ui: ^2.0.2
 
 #开发环境依赖
 dev_dependencies:
