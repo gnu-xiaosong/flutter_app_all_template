@@ -35,6 +35,9 @@ V1.0
 * Pc
 * web
 
+### 模版
+* Windows端
+![img.png](img.png)
 
 ### 开发环境
 

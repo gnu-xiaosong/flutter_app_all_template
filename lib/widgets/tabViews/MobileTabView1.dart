@@ -114,14 +114,14 @@ void _onLoading() async {
   _refreshController.loadComplete();
 }
 
-class TabView1 extends StatefulWidget {
-  const TabView1({super.key});
+class MobileTabView1 extends StatefulWidget {
+  const MobileTabView1({super.key});
 
   @override
-  State<TabView1> createState() => _TabView1State();
+  State<MobileTabView1> createState() => _MobileTabView1State();
 }
 
-class _TabView1State extends State<TabView1> {
+class _MobileTabView1State extends State<MobileTabView1> {
   @override
   Widget build(BuildContext context) {
     return SmartRefresher(

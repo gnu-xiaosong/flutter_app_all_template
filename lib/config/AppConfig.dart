@@ -32,7 +32,7 @@ import '../../widgets/BottomNavigationBars/water_drop_nav_bar.dart';
 import '../../widgets/tabViews/TabView2.dart';
 import '../../widgets/tabViews/TabView3.dart';
 import '../../widgets/tabViews/TabView4.dart';
-import '../../widgets/tabViews/TabView1.dart';
+import '../../widgets/tabViews/MobileTabView1.dart';
 import '../widgets/BottomNavigationBars/animated_bottom_navigation_bar.dart';
 import '../widgets/BottomNavigationBars/bottom_bar_with_sheet.dart';
 import '../widgets/BottomNavigationBars/floating_bottom_navigation_bar.dart';
@@ -74,7 +74,7 @@ class AppConfig extends ToolsManager {
         //icon: const Icon(Icons.cloud_outlined),
         text: "tab1".tr(), //tab名称
       ),
-      "tabView": TabView1(),
+      "tabView": MobileTabView1(),
     },
     {
       "tab": Tab(

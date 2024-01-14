@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 
 NavigationPane PaneStyle1(BuildContext context) {
   PaneDisplayMode displayMode = PaneDisplayMode.compact;
+  WinConfig.context = context;
+
   return NavigationPane(
       //被选择index
       selected: Provider.of<OtherState>(context).otherModel.topIndex as int,

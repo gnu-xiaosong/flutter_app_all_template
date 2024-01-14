@@ -11,6 +11,7 @@ import 'package:app_template/states/OtherState.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart' show Icons;
 import 'package:provider/provider.dart';
 import '../../config/ThemesConfig.dart';
 
@@ -38,19 +39,22 @@ Widget appBarLeft() {
           width: double.infinity,
           //标题位置
           alignment: Alignment.center,
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            // Image(image: AssetImage(AppConfig.appConfig['icon'])),
-            // Image.asset(
-            //   AppConfig.appConfig['icon'],
-            //   width: 4,
-            //   height: 4,
-            // ),
-            // Icon(FluentIcons.admin),
-            Text(
-              "left",
-              style: TextStyle(fontSize: 13),
-            ),
-          ])));
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Image(image: AssetImage(AppConfig.appConfig['icon'])),
+                // Image.asset(
+                //   AppConfig.appConfig['icon'],
+                //   width: 4,
+                //   height: 4,
+                // ),
+                Icon(Icons.adb),
+                // Text(
+                //   "left",
+                //   style: TextStyle(fontSize: 13),
+                // ),
+              ])));
 }
 
 // 中间
