@@ -6,6 +6,7 @@
  * @Description: 路由设置
  */
 
+import 'package:app_template/Layouts/embeding/EmbedLayout.dart';
 import 'package:app_template/Layouts/windows/WindowsLayout.dart';
 import 'package:app_template/pages/Introduction/Introduction1.dart';
 import 'package:app_template/pages/logins/default/index/index.dart';
@@ -17,7 +18,7 @@ import '../pages/logins/login1/Login1.dart';
 
 //路由表
 Map<String, WidgetBuilder> routes = {
-  "/": (context) => const MobileLayout1(),
+  "/": (context) => EmbedLayout(), //const MobileLayout1(),
   //const MobileLayout1(), //注册根路由:默认第一个为系统根路由： initialRoute: "/",
   "home": (context) => const MobileLayout1(), // home 页路由
   "introduce": (context) => Introduction1(), //介绍页路由

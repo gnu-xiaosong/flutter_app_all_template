@@ -42,6 +42,8 @@ V1.0
 ![img.png](img.png)
 * Macos端
 ![img_1.png](img_1.png)
+* 嵌入式端
+![img_3.png](img_3.png)
 ### 开发环境
 
 * 语言：Dart

@@ -1,4 +1,5 @@
 import 'package:app_template/boot/AndroidBoot.dart';
+import 'package:app_template/boot/EmbedBoot.dart';
 import 'package:app_template/boot/MacosBoot.dart';
 // import 'package:app_template/boot/WindowsBoot.dart';
 import 'package:app_template/states/DarkState.dart';
@@ -101,6 +102,9 @@ class _MaterialApplicationState extends State<MaterialApplication> {
   Widget build(BuildContext context) {
     // return MacosBoot();
     // return AndroidBoot();
+
+    //嵌入式
+    return EmbedBoot();
     //根据平台自定义选着平台
     if (Platform.isIOS) {
       // 1.移动端(ios端)
