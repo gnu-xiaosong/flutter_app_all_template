@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -66,9 +67,9 @@ Widget speed_dial(BuildContext context, {Function? setState}) {
     buttonSize:
         buttonSize, // it's the SpeedDial size which defaults to 56 itself
     // iconTheme: IconThemeData(size: 22),
-    label: extend ? const Text("Open") : null, // The label of the main button.
+    label: extend ? Text("Open".tr()) : null, // The label of the main button.
     /// The active label of the main button, Defaults to label if not specified.
-    activeLabel: extend ? const Text("Close") : null,
+    activeLabel: extend ? Text("Close".tr()) : null,
 
     /// Transition Builder between label and activeLabel, defaults to FadeTransition.
     // labelTransitionBuilder: (widget, animation) => ScaleTransition(scale: animation,child: widget),
@@ -105,7 +106,7 @@ Widget speed_dial(BuildContext context, {Function? setState}) {
         child: !rmicons ? const Icon(Icons.accessibility) : null,
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
-        label: 'First',
+        label: 'First'.tr(),
         onTap: () => print("pl"),
         onLongPress: () => debugPrint('FIRST CHILD LONG PRESS'),
       ),
@@ -113,14 +114,14 @@ Widget speed_dial(BuildContext context, {Function? setState}) {
         child: !rmicons ? const Icon(Icons.brush) : null,
         backgroundColor: Colors.deepOrange,
         foregroundColor: Colors.white,
-        label: 'Second',
+        label: 'Second'.tr(),
         onTap: () => debugPrint('SECOND CHILD'),
       ),
       SpeedDialChild(
         child: !rmicons ? const Icon(Icons.margin) : null,
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
-        label: 'Show Snackbar',
+        label: 'Show menus'.tr(),
         visible: true,
         onTap: () => ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text(("Third Child Pressed")))),

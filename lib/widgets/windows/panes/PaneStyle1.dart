@@ -20,12 +20,12 @@ NavigationPane PaneStyle1(BuildContext context) {
       // 是否显示
       displayMode: displayMode,
       //大小
-      size: NavigationPaneSize(
-        //展开宽度
-        openWidth: 150,
-        //顶部宽度
-        // topHeight: 20
-      ),
+      // size: NavigationPaneSize(
+      //   //展开宽度
+      //   openWidth: ,
+      //   //顶部宽度
+      //   // topHeight: 20
+      // ),
       //侧边栏item
       items: [
         for (var item in WinConfig.tabBarBodyItems) generatePaneItem(item)

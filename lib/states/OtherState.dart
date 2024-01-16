@@ -9,6 +9,7 @@
 import 'package:app_template/common/GlobalManager.dart';
 import 'package:app_template/models/index.dart';
 import 'package:flutter/material.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'AppState.dart';
 
 class OtherState extends AppState {
@@ -25,6 +26,9 @@ class OtherState extends AppState {
     //通知widget更新
     notifyListeners();
   }
+
+  //保存PanelController _pc = new PanelController()
+  void savePanelController(PanelController _pc) {}
 
 //windows缩放窗口图标是否缩放：true or false
   void setIsMaximized() {

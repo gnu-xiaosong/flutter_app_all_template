@@ -102,23 +102,23 @@ class _MaterialApplicationState extends State<MaterialApplication> {
   Widget build(BuildContext context) {
     // return MacosBoot();
     // return AndroidBoot();
-
+    // return WindowsBoot();
     //嵌入式
     return EmbedBoot();
     //根据平台自定义选着平台
-    if (Platform.isIOS) {
-      // 1.移动端(ios端)
-      // return ;
-    } else if (Platform.isWindows) {
-      // 2.windows端
-      return WindowsBoot();
-    } else if (Platform.isMacOS) {
-      // 3.macos端
-      return MacosBoot();
-    } else if (Platform.isAndroid) {
-      // 4.Android
-      return AndroidBoot();
-    }
+    // if (Platform.isIOS) {
+    //   // 1.移动端(ios端)
+    //   // return ;
+    // } else if (Platform.isWindows) {
+    //   // 2.windows端
+    //   return WindowsBoot();
+    // } else if (Platform.isMacOS) {
+    //   // 3.macos端
+    //   return MacosBoot();
+    // } else if (Platform.isAndroid) {
+    //   // 4.Android
+    //   return AndroidBoot();
+    // }
 
     return WindowsBoot();
   }

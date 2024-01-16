@@ -4,7 +4,7 @@ import '../widgets/tabViews/EmbedingTabView1.dart';
 import '../widgets/tabViews/EmbedingTabView2.dart';
 
 //页面结构: page->EmbedHome  basic->EmbedHome
-bool isBasicLayout = true;
+bool isBasicLayout = false;
 //是否显示appbar
 bool isShowAppBar = true;
 

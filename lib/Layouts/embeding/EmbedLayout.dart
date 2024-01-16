@@ -1,11 +1,15 @@
+import 'dart:ui';
+
 import 'package:app_template/widgets/embed/appBars/EmbedAppBar.dart';
 import 'package:app_template/widgets/embed/bodys/EmbedBody.dart';
 import 'package:bottom_sheet_scaffold/bottom_sheet_scaffold.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../../config/EmbedingConfig.dart' show isBasicLayout, isShowAppBar;
 import '../../pages/embed/Home.dart';
+import '../../widgets/sheets/mune_sheet.dart';
 
 class EmbedLayout extends StatefulWidget {
   const EmbedLayout({super.key});
@@ -21,30 +25,14 @@ class _EmbedLayoutState extends State<EmbedLayout> {
   }
 }
 
-BottomSheetScaffold _scaffold(BuildContext context) {
+Scaffold _scaffold(BuildContext context) {
   return isShowAppBar
-      ? BottomSheetScaffold(
+      ? Scaffold(
           //顶部区域
           appBar: embedAppBar(),
           //底部主体部分: 两种形式:单页面 or 基本结构新形势
-          body: isBasicLayout ? EmbedBody() : EmbedHome(),
-          //底部抽屉
-          bottomSheet: DraggableBottomSheet(
-            body: Container(
-              width: double.infinity,
-              color: Colors.green,
-            ),
-          ),
-        )
-      : BottomSheetScaffold(
+          body: isBasicLayout ? EmbedBody() : EmbedHome())
+      : Scaffold(
           //底部主体部分: 两种形式:单页面 or 基本结构新形势
-          body: isBasicLayout ? EmbedBody() : EmbedHome(),
-          //底部抽屉
-          bottomSheet: DraggableBottomSheet(
-            body: Container(
-              width: double.infinity,
-              color: Colors.green,
-            ),
-          ),
-        );
+          body: isBasicLayout ? EmbedBody() : EmbedHome());
 }

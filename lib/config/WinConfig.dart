@@ -7,6 +7,7 @@
  */
 
 import 'package:app_template/config/AppConfig.dart';
+import 'package:app_template/widgets/tabViews/CustomPaintTabView.dart';
 import 'package:app_template/widgets/tabViews/MacosTabView1.dart';
 import 'package:app_template/widgets/tabViews/WindowsTabView1.dart';
 import 'package:fluent_ui/fluent_ui.dart';
@@ -36,7 +37,7 @@ class WinConfig extends AppConfig {
       // ),
       "enabled": true,
       "body":
-          MacosTabView1(), // Platform.isWindows ? WindowsTabView1() : MacosTabView1(),
+          CustomPaintTabView(), // Platform.isWindows ? WindowsTabView1() : MacosTabView1(),
       "items": []
     },
     {
@@ -48,7 +49,7 @@ class WinConfig extends AppConfig {
       //   size: 15,
       // ),
       "enabled": true,
-      "body": TabView2(),
+      "body": WindowsTabView1(),
       "items": []
     },
     {

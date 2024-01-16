@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
+import '../Layouts/embeding/EmbedLayout.dart';
 import '../common/GlobalManager.dart';
 import '../routes/index.dart';
 import '../states/DarkState.dart';
@@ -43,9 +44,11 @@ class _EmbedBootState extends State<EmbedBoot> {
               //颜色:默认跟随用户设置
               //color: themeState.theme,
               //路由
-              initialRoute: routes.keys.first.toString(),
+              // initialRoute: routes.keys.first.toString(),
+              //入口
+              home: EmbedLayout(),
               //名为"/"的路由作为应用的home(首页)
-              routes: routes,
+              // routes: routes,
               //路由表
               //路由拦截
               onGenerateRoute: (settings) => onGenerateRoute(settings),
