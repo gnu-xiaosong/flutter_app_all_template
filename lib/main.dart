@@ -1,6 +1,4 @@
-import 'package:app_template/boot/AndroidBoot.dart';
 import 'package:app_template/boot/EmbedBoot.dart';
-import 'package:app_template/boot/MacosBoot.dart';
 // import 'package:app_template/boot/WindowsBoot.dart';
 import 'package:app_template/states/DarkState.dart';
 import 'package:app_template/states/DescState.dart';
@@ -16,8 +14,6 @@ import 'dart:io';
 import 'boot/WindowsBoot.dart';
 import 'common/GlobalManager.dart';
 import 'package:easy_localization/easy_localization.dart';
-
-import 'config/WinConfig.dart';
 
 void main() => GlobalManager.init().then((e) async {
       await EasyLocalization.ensureInitialized();

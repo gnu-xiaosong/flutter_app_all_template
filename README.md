@@ -13,6 +13,9 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
 
 V1.0
 
+
+### 项目架构
+![img_4.png](img_4.png)
 ### 特性
 
 * 统一管理器模块调度
