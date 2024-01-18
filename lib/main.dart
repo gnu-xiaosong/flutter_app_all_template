@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'dart:io';
 //全局变量
+import 'boot/AndroidBoot.dart';
 import 'boot/WindowsBoot.dart';
 import 'common/GlobalManager.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -97,10 +98,10 @@ class _MaterialApplicationState extends State<MaterialApplication> {
   @override
   Widget build(BuildContext context) {
     // return MacosBoot();
-    // return AndroidBoot();
+    return AndroidBoot();
     // return WindowsBoot();
     //嵌入式
-    return EmbedBoot();
+    // return EmbedBoot();
     //根据平台自定义选着平台
     // if (Platform.isIOS) {
     //   // 1.移动端(ios端)

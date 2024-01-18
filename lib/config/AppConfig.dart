@@ -155,7 +155,7 @@ class AppConfig extends ToolsManager {
     floating_bottom_navigation_bar
   ];
   //当前底部导航栏的索引
-  static int currentBottomNavigatorIndex = 10;
+  static int currentBottomNavigatorIndex = 7;
 
   //http类配置参数
   static final Map<String, dynamic> httpConfig = {
