@@ -68,6 +68,7 @@ dependencies:
   get: ^4.6.6
   macos_ui: ^2.0.2
   sliding_up_panel: ^2.0.0+1
+  flutter_screenutil: ^5.9.0
 
 #开发环境依赖
 dev_dependencies:

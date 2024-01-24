@@ -122,4 +122,11 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
 
 ### 更新日志：
 - 2024.1.6 增加了notification本地化通知插件，并且进行了工具类封装,以及主题插件配置
+
 - 2024.1.7 增加下拉刷新以及微光效果，修改目录结构,以及登录注册页面
+
+- 2024.1.24 fix bottom sheet to gesture
+
+  <img src="project/README/image-20240124082545122.png" alt="image-20240124082545122" style="zoom:25%;" />
+
+- 

@@ -6,6 +6,7 @@ import 'package:app_template/states/OtherState.dart';
 import 'package:app_template/states/ThemeState.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -19,12 +20,21 @@ import 'package:easy_localization/easy_localization.dart';
 void main() => GlobalManager.init().then((e) async {
       await EasyLocalization.ensureInitialized();
 
-      runApp(GetMaterialApp(
-          home: EasyLocalization(
-              supportedLocales: const [Locale('en', 'US'), Locale('zh', 'CN')],
-              path:
-                  'assets/translations', // <-- change the path of the translation files
-              child: const App())));
+      runApp(
+          //屏幕适配
+          ScreenUtilInit(
+              designSize: const Size(360, 690),
+              minTextAdapt: true,
+              splitScreenMode: true,
+              builder: (_, child) => GetMaterialApp(
+                      home: EasyLocalization(
+                          supportedLocales: const [
+                        Locale('en', 'US'),
+                        Locale('zh', 'CN')
+                      ],
+                          path:
+                              'assets/translations', // <-- change the path of the translation files
+                          child: const App()))));
 
       // 初始化自定义窗口
       if (Platform.isWindows || Platform.isMacOS || Platform.isLinux)

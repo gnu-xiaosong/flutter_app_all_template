@@ -9,6 +9,7 @@ import '../../widgets/floatButtons/SpeedDial.dart';
 import '../../widgets/sheets/mune_sheet.dart';
 
 late Function _setState;
+PanelController slideControl = PanelController();
 
 class MobileLayout1 extends StatefulWidget {
   const MobileLayout1({super.key});
@@ -20,6 +21,7 @@ class _MobileLayout1State extends State<MobileLayout1> {
   @override
   Widget build(BuildContext context) {
     _setState = setState;
+
     return Scaffold(
       //悬浮按钮
       floatingActionButton: speed_dial(context),
@@ -32,10 +34,11 @@ class _MobileLayout1State extends State<MobileLayout1> {
           )),
       //pages页面
       body: SlidingUpPanel(
+        controller: slideControl,
         //滑出pane
         renderPanelSheet: false, //是否显示sheet
         slideDirection: SlideDirection.UP, //弹出方向：
-        minHeight: 20,
+        minHeight: 0,
         // maxHeight: 300,
         panel: _floatingPanel(),
         collapsed: _floatingCollapsed(),
@@ -46,10 +49,18 @@ class _MobileLayout1State extends State<MobileLayout1> {
       ),
 
       //底部导航栏
-      bottomNavigationBar:
-          AppConfig.bottomNavigators[AppConfig.currentBottomNavigatorIndex](
-              (index) => _setState(() => AppConfig.currentIndex = index),
-              setState: _setState),
+      bottomNavigationBar: GestureDetector(
+        //垂直拖拽结束
+        onVerticalDragEnd: (detail) {
+          //显示
+          slideControl.open();
+          print("onVerticalDragEnd" + detail.velocity.toString());
+        },
+        child:
+            AppConfig.bottomNavigators[AppConfig.currentBottomNavigatorIndex](
+                (index) => _setState(() => AppConfig.currentIndex = index),
+                setState: _setState),
+      ),
     );
   }
 
@@ -61,7 +72,7 @@ class _MobileLayout1State extends State<MobileLayout1> {
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0)),
       ),
-      margin: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
+      margin: const EdgeInsets.fromLTRB(24.0, 100, 24.0, 100),
       child: Center(
         child: Text(
           "This is the collapsed Widget",
@@ -84,7 +95,7 @@ class _MobileLayout1State extends State<MobileLayout1> {
               color: Colors.transparent,
             ),
           ]),
-      margin: EdgeInsets.fromLTRB(PADDING, 2, PADDING, 24), //panel的margin
+      margin: EdgeInsets.fromLTRB(PADDING, 0, PADDING, 24), //panel的margin
       //sheet内容
       child: mune_sheet(),
     );
