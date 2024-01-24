@@ -35,6 +35,7 @@ import '../../widgets/tabViews/TabView4.dart';
 import '../../widgets/tabViews/MobileTabView1.dart';
 import '../widgets/BottomNavigationBars/animated_bottom_navigation_bar.dart';
 import '../widgets/BottomNavigationBars/bottom_bar_with_sheet.dart';
+import '../widgets/BottomNavigationBars/custom_bottom_bar.dart';
 import '../widgets/BottomNavigationBars/floating_bottom_navigation_bar.dart';
 
 class AppConfig extends ToolsManager {
@@ -142,6 +143,8 @@ class AppConfig extends ToolsManager {
 
   // 底部导航栏样式
   static List bottomNavigators = <Function>[
+    //自定义bottom
+    custom_bottom_bar,
     flutter_snake_navigationbar,
     animated_notch_bottom_bar,
     water_drop_nav_bar,
@@ -155,7 +158,7 @@ class AppConfig extends ToolsManager {
     floating_bottom_navigation_bar
   ];
   //当前底部导航栏的索引
-  static int currentBottomNavigatorIndex = 7;
+  static int currentBottomNavigatorIndex = 0;
 
   //http类配置参数
   static final Map<String, dynamic> httpConfig = {
