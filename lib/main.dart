@@ -36,17 +36,21 @@ void main() => GlobalManager.init().then((e) async {
                               'assets/translations', // <-- change the path of the translation files
                           child: const App()))));
 
-      // 初始化自定义窗口
-      if (Platform.isWindows || Platform.isMacOS || Platform.isLinux)
-        doWhenWindowReady(() {
-          final win = appWindow;
-          const initialSize = Size(1000, 650);
-          win.minSize = initialSize;
-          win.size = initialSize;
-          win.alignment = Alignment.center;
-          win.title = "Custom window with Flutter";
-          win.show();
-        });
+      try {
+        // 初始化自定义窗口
+        if (Platform.isWindows || Platform.isMacOS || Platform.isLinux)
+          doWhenWindowReady(() {
+            final win = appWindow;
+            const initialSize = Size(1000, 650);
+            win.minSize = initialSize;
+            win.size = initialSize;
+            win.alignment = Alignment.center;
+            win.title = "Custom window with Flutter";
+            win.show();
+          });
+      } catch (e) {
+        print("current platform unsupport Windows!");
+      }
     });
 
 class App extends StatefulWidget {
@@ -58,8 +62,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    print("----------------Locale---------");
-    print(context.locale);
+    print("Locale:${context.locale}");
     return MultiProvider(
         providers: [
           //全局配置共享状态
@@ -108,10 +111,10 @@ class _MaterialApplicationState extends State<MaterialApplication> {
   @override
   Widget build(BuildContext context) {
     // return MacosBoot();
-    return AndroidBoot();
+    // return AndroidBoot();
     // return WindowsBoot();
     //嵌入式
-    // return EmbedBoot();
+    return EmbedBoot();
     //根据平台自定义选着平台
     // if (Platform.isIOS) {
     //   // 1.移动端(ios端)

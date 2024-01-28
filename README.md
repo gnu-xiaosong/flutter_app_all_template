@@ -1,5 +1,9 @@
 ## 快速开发flutterApp的工程模版
 
+### 目录
+
+[TOC]
+
 ### 提示
 
 * 适用Android的：https://github.com/gnu-xiaosong/flutter_app_Android_template
@@ -120,7 +124,191 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
 
 ![image-20240118201408695](project/README/image-20240118201408695.png)
 
+### Rasperry for flutter 配置
+
+> 提示：开发机器为windows   构建机器为ubuntu，运行机器为Raspberry
+
+#### 第一步：安装vmware虚拟机，自行百度。ubuntu系统为例
+
+#### 第二步：配置Flutter环境，snap进行安装flutter
+
+地址：https://github.com/ardera/flutterpi_tool
+
+* 安装snap工具
+
+  官方地址：https://flutter.cn/docs/get-started/install/linux#method-1-install-flutter-using-snapd
+
+  ```shell
+  sudo apt install snap
+  ```
+
+* 安装flutter
+
+  ```shell
+  sudo snap install flutter --classic
+  ```
+
+  ![image-20240128134428395](project/README/image-20240128134428395.png)
+
+* 测试flutter
+
+  ```shell
+  sudo flutter doctor -v
+  ```
+
+* 切换国内源：加快flutter访问速度
+
+  ```sh
+  export PUB_HOSTED_URL="https://pub.flutter-io.cn"
+  export FLUTTER_STORAGE_BASE_URL="https://storage.flutter-io.cn"
+  ```
+
+#### 第三步：Raspberry配置
+
+##### 安装flutter-pi工具(用于调起flutter应用)
+
+* 安装相关依赖
+
+  ```shell
+  sudo apt install cmake libgl1-mesa-dev libgles2-mesa-dev libegl1-mesa-dev libdrm-dev libgbm-dev ttf-mscorefonts-installer fontconfig libsystemd-dev libinput-dev libudev-dev  libxkbcommon-dev
+  
+  sudo fc-cache
+  ```
+
+* clone源代码
+
+  ```shell
+  # github
+  git clone https://github.com/ardera/flutter-pi
+  # gitee
+  git clone https://gitee.com/komatsu1134/flutter-pi.git
+  # 切换至目录
+  cd flutter-pi
+  ```
+
+* 编译代码
+
+  ```shell
+  mkdir build && cd build
+  cmake ..
+  make -j`nproc`
+  ```
+
+* 安装
+
+  ```shell
+  sudo make install
+  ```
+
+* 启用
+
+  ```shell
+  flutter-pi 
+  ```
+
+
+##### 配置Raspberry参数
+
+* 打开raspi-config
+
+  ```shell
+  sudo raspi-config
+  ```
+
+  <img src="project/README/image-20240128131623118.png" alt="image-20240128131623118" style="zoom:33%;" />
+
+* 设置boot启动为命令行模式: System Options -> Boot / Auto Login and select Console or Console (Autologin).
+
+  <img src="project/README/image-20240128131303451.png" alt="image-20240128131303451" style="zoom: 33%;" />
+
+* 其他额外配置：https://github.com/ardera/flutter-pi#-building-flutter-pi-on-the-raspberry-pi
+
+  <img src="project/README/image-20240128131729358.png" alt="image-20240128131729358" style="zoom:33%;" />
+
+* 重启
+
+  ```shell
+  sudo reboot
+  ```
+
+### 第四步：启动项目
+
+* 克隆项目
+
+  ```shell
+  # github 推荐
+  git clone https://github.com/gnu-xiaosong/flutter_app_all_template.git
+  # gitee  更新可能不及时
+  git clone https://gitee.com/komatsu1134/flutter_app_all_template1.git
+  ```
+
+* 安装项目包依赖依赖
+
+  ```shell
+  flutter pub get
+  ```
+
+* 安装`flutterpi-tool`工具统一管理编译
+
+  ```shell
+  flutter pub add flutterpi_tool
+  ```
+
+* 编译资源包:采用flutterpi-tool
+
+  * `cd`进入项目目录
+
+    ```
+    cd flutter_app_all_template
+    ```
+
+  * 运行`flutterpi_tool build`编译
+
+    * `ARM 32-bit` debug mode
+
+      ```shell
+      flutterpi_tool build
+      # or
+      flutter pub global run flutterpi_tool build
+      ```
+
+    * `64-bit ARM`, release mode, with a Raspberry Pi 4 tuned engine
+    
+      ```shell
+      flutterpi_tool build --arch=arm64 --cpu=pi4 --release
+      # or
+      flutter pub global run flutterpi_tool build --arch=arm64 --cpu=pi4 --release
+      ```
+      
+      > 注意：要将flutterpi_tool添加进环境变量中
+      >
+      > ```shell
+      > export PATH="$PATH:`pwd`/xxx/bin"
+      > ```
+
+* **发送打包资源**给Raspberry：使用`rsync`或`scp`将捆绑包部署到Raspberry Pi
+
+  ```shell
+  # cd进入项目目录
+  cd flutter_app_all_template
+  # 使用rsync
+  rsync -a --info=progress2 ./build/flutter_assets/ pi@raspberrypi:/home/pi/my_apps_flutter_assets
+  # 或scp
+  scp -r ./build/flutter_assets/ pi@raspberrypi:/home/pi/my_apps_flutter_assets
+  ```
+
+  > 如果连接不上则，用ip连接pi@raspberrypi
+  >
+  > 注意：只需要将树莓派连接到同一个局域网内即可，运行该命令之后他会提示你输入密码，用于传输数据至树莓派
+
+* Raspebrry端**启动项目**：在Raspberry中执行
+
+  ```sh
+  sudo flutter-pi --release /home/pi/my_apps_flutter_assets
+  ```
+
 ### 更新日志：
+
 - 2024.1.6 增加了notification本地化通知插件，并且进行了工具类封装,以及主题插件配置
 
 - 2024.1.7 增加下拉刷新以及微光效果，修改目录结构,以及登录注册页面
@@ -129,4 +317,5 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
 
   <img src="project/README/image-20240124082545122.png" alt="image-20240124082545122" style="zoom:25%;" />
 
-- 
+- 2024.1.28 add flutter embeding to Raspberry and exception catched handler
+
