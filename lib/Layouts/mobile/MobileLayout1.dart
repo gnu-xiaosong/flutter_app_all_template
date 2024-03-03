@@ -18,6 +18,7 @@ class MobileLayout1 extends StatefulWidget {
 }
 
 class _MobileLayout1State extends State<MobileLayout1> {
+  bool _isDragging = false;
   @override
   Widget build(BuildContext context) {
     _setState = setState;
@@ -50,12 +51,25 @@ class _MobileLayout1State extends State<MobileLayout1> {
 
       //底部导航栏
       bottomNavigationBar: GestureDetector(
-        //垂直拖拽结束
-        onVerticalDragEnd: (detail) {
-          //显示
+        onVerticalDragEnd: (DragEndDetails details) {
+          _isDragging = false;
           slideControl.open();
-          print("onVerticalDragEnd" + detail.velocity.toString());
         },
+        onHorizontalDragStart: (details) {
+          print("horizontal");
+        },
+        onTap: () {
+          if (!_isDragging) {
+            // 处理点击事件（如果需要的话）
+            print('Tap Detected');
+          }
+        },
+        //垂直拖拽结束
+        // onVerticalDragDown: (detail) {
+        //   //显示
+        //   // slideControl.open();
+        //   print("onVerticalDragEnd" + detail.globalPosition.toString());
+        // },
         child:
             AppConfig.bottomNavigators[AppConfig.currentBottomNavigatorIndex](
                 (index) => _setState(() => AppConfig.currentIndex = index),

@@ -20,6 +20,7 @@ Widget animated_bottom_navigation_bar(Function callback, {Function? setState}) {
         child: Icon(
           Icons.add,
           color: AppColors.white,
+          size: 40.0,
         ),
       ),
       //中心tab展开item

@@ -1,0 +1,16 @@
+{
+  "app": "this is app",
+  "test": "a test",
+  "skip": "skip",
+  "next": "next",
+  "finish": "finish",
+
+  "home": "home",
+  "person":"person",
+  "Log_out": "Log out",
+  "setting": "setting",
+  "language": "language",
+  "dark": "dark",
+  "shopping": "shopping",
+  "browse": "browse"
+}

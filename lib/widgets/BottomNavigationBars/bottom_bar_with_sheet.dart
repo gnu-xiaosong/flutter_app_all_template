@@ -8,7 +8,7 @@ import '../../config/AppConfig.dart';
 
 late Function _callback;
 
-Widget bottom_bar_with_sheet(Function callback) {
+Widget bottom_bar_with_sheet(Function callback, {Function? setState}) {
   _callback = callback;
   return Bottombarwithsheet();
 }
@@ -32,7 +32,7 @@ class _BottombarwithsheetState extends State<Bottombarwithsheet> {
   }
 
   @override
-  Widget build(BuildContext context, {Function? setState}) {
+  Widget build(BuildContext context) {
     return BottomBarWithSheet(
       controller: _bottomBarController,
       bottomBarTheme: const BottomBarTheme(

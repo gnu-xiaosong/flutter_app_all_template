@@ -111,10 +111,10 @@ class _MaterialApplicationState extends State<MaterialApplication> {
   @override
   Widget build(BuildContext context) {
     // return MacosBoot();
-    // return AndroidBoot();
+    return AndroidBoot();
     // return WindowsBoot();
     //嵌入式
-    return EmbedBoot();
+    // return EmbedBoot();
     //根据平台自定义选着平台
     // if (Platform.isIOS) {
     //   // 1.移动端(ios端)

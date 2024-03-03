@@ -254,6 +254,13 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
   flutter pub add flutterpi_tool
   ```
 
+* 激活flutterpi_tool
+
+  ```shell
+  flutter pub global activate flutterpi_tool
+  ```
+
+
 * 编译资源包:采用flutterpi-tool
 
   * `cd`进入项目目录
@@ -318,4 +325,6 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
   <img src="project/README/image-20240124082545122.png" alt="image-20240124082545122" style="zoom:25%;" />
 
 - 2024.1.28 add flutter embeding to Raspberry and exception catched handler
+
+- 2024.3.3  修复bottom底部样式9的bug以及垂直滑动弹窗点击和水平滑动时也弹出的bug
 
