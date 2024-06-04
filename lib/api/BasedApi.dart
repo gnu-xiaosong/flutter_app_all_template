@@ -9,10 +9,7 @@
 import 'package:app_template/common/GlobalManager.dart';
 import 'package:app_template/common/HttpManager.dart';
 
-class BasedApi extends GlobalManager{
-
+class BasedApi extends GlobalManager {
   //全局方法http
-  HttpManager get appHttp=>GlobalManager().GlobalHttp;
-
+  HttpManager get appHttp => GlobalManager().GlobalHttp;
 }
-

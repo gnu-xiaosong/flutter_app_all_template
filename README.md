@@ -328,3 +328,14 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
 
 - 2024.3.3  修复bottom底部样式9的bug以及垂直滑动弹窗点击和水平滑动时也弹出的bug
 
+- 2024.6.4  google_fonts bug修复
+
+  - 方法一: 指定google_fonts版本为6.1.0   默认方法
+
+    ![image-20240604194918642](project/README/image-20240604194918642.png)
+
+  - 方法二: 使用google_fonts 版本为6.2.1，则需要将flutter版本更新为>=3.19.2
+  
+- 2024.6.4 修复平台检测代码
+
+  <img src="project/README/image-20240604203159864.png" alt="image-20240604203159864" style="zoom:50%;" />

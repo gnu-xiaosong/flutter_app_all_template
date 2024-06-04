@@ -5,8 +5,14 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:provider/provider.dart';
 
 NavigationPane PaneStyle1(BuildContext context) {
-  PaneDisplayMode displayMode = PaneDisplayMode.compact;
+  PaneDisplayMode displayMode = PaneDisplayMode.open;
   WinConfig.context = context;
+
+  // // 定义显示模式和大小
+  // PaneDisplayMode displayMode = PaneDisplayMode.compact;
+  NavigationPaneSize paneSize = NavigationPaneSize(
+    openWidth: 180, // 设置展开宽度
+  );
 
   return NavigationPane(
       //被选择index
@@ -20,7 +26,8 @@ NavigationPane PaneStyle1(BuildContext context) {
       // 是否显示
       displayMode: displayMode,
       //大小
-      // size: NavigationPaneSize(
+      size: paneSize,
+      // NavigationPaneSize(
       //   //展开宽度
       //   openWidth: ,
       //   //顶部宽度

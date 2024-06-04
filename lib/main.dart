@@ -14,6 +14,7 @@ import 'dart:io';
 //全局变量
 import 'boot/AndroidBoot.dart';
 import 'boot/WindowsBoot.dart';
+import 'boot/MacosBoot.dart';
 import 'common/GlobalManager.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -110,25 +111,30 @@ class MaterialApplication extends StatefulWidget {
 class _MaterialApplicationState extends State<MaterialApplication> {
   @override
   Widget build(BuildContext context) {
-    // return MacosBoot();
-    return AndroidBoot();
-    // return WindowsBoot();
-    //嵌入式
-    // return EmbedBoot();
-    //根据平台自定义选着平台
-    // if (Platform.isIOS) {
-    //   // 1.移动端(ios端)
-    //   // return ;
-    // } else if (Platform.isWindows) {
-    //   // 2.windows端
-    //   return WindowsBoot();
-    // } else if (Platform.isMacOS) {
-    //   // 3.macos端
-    //   return MacosBoot();
-    // } else if (Platform.isAndroid) {
-    //   // 4.Android
-    //   return AndroidBoot();
-    // }
+    // web平台
+    try {
+      if (Platform.isIOS) {
+        print("检测为非web平台");
+      }
+    } catch (e, r) {
+      //默认同windows端
+      return WindowsBoot();
+    }
+
+    // 根据平台自定义选着平台
+    if (Platform.isIOS) {
+      // 1.移动端(ios端)
+      // return ;
+    } else if (Platform.isWindows) {
+      // 2.windows端
+      return WindowsBoot();
+    } else if (Platform.isMacOS) {
+      // 3.macos端
+      return MacosBoot();
+    } else if (Platform.isAndroid) {
+      // 4.Android
+      return AndroidBoot();
+    }
 
     return WindowsBoot();
   }
