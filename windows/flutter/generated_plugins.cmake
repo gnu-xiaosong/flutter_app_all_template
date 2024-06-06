@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   battery_plus
   bitsdojo_window_windows
   connectivity_plus
+  local_auth_windows
   share_plus
   system_theme
   url_launcher_windows

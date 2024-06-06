@@ -98,7 +98,8 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
 ├─assets                   ——————资源文件：img，font等
 ├─ios                      ——————IOS平台相关代码
 ├─lib                      ——————开发目录：flutter相关代码
-│  ├─common                .........一些工具类，如通用方法类、网络接口类、保存全局变量的静态类等
+│  ├─common                .........一些工具、模块类，
+│  ├─manager               .........app管理类,如通用方法类、网络接口类、保存全局变量的静态类等
 │  ├─api                   .........api请求目录
 │  ├─l10n                  .........国际化相关的类都在此目录下
 │  ├─Layouts               .........App布局类都在此目录下
@@ -339,3 +340,20 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
 - 2024.6.4 修复平台检测代码
 
   <img src="project/README/image-20240604203159864.png" alt="image-20240604203159864" style="zoom:50%;" />
+
+* 2024.6.5 增加应用首次加载、应用更新(利用包[upgrader](https://pub.dev/packages/upgrader))监测。
+
+  <img src="project/README/image-20240606221150302.png" alt="image-20240606221150302" style="zoom:50%;" />
+
+* 2024.6.7 增加app生命周期钩子函数【AppLifecycleStateManager.dart】、增加应用安全锁【配置在AppCommon.dart文件中】、修改common目录名为manager名、并保留common作为扩展目录。
+
+  [1] 安全锁支持指纹等方式，，采用local_auth包作为生物验证包。同时支持密码锁，初始密码为1234。
+
+  [2] ！！！！存在指纹解锁bug，待解决
+
+  <img src="project/README/image-20240607033730069.png" alt="image-20240607033730069" style="zoom: 50%;" /><img src="project/README/image-20240607034012074.png" alt="image-20240607034012074" style="zoom:50%;" /><img src="project/README/image-20240607034942220.png" alt="image-20240607034942220" style="zoom:50%;" />
+
+* 2024.6.7  添加应用用户离开应用程序时，在应用程序中隐藏内容的安全性可见性。包[secure_app_switcher](https://pub.dev/packages/secure_app_switcher)
+
+  <img src="project/README/image-20240607051458982.png" alt="image-20240607051458982" style="zoom:50%;" /><img src="project/README/image-20240607051529570.png" alt="image-20240607051529570" style="zoom:50%;" />
+

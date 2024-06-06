@@ -6,16 +6,16 @@
  * @Description: 全局管理器工具类
  */
 import 'dart:convert';
-import 'package:app_template/common/NotificationsManager.dart';
-import 'package:app_template/common/ToolsManager.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //应用配置信息
 import '../models/index.dart';
 //HttpManager管理工具类
-import '../common/HttpManager.dart';
 //本地通知管理
 import './NotificationsManager.dart';
+import 'AppLifecycleStateManager.dart';
+import 'HttpManager.dart';
+import 'ToolsManager.dart';
 
 class GlobalManager {
   /***************↓↓↓↓↓↓全局参数变量初始化操作↓↓↓↓↓↓↓******************/
@@ -43,6 +43,14 @@ class GlobalManager {
   //初始化全局信息，会在APP启动时执行
   static Future init() async {
     WidgetsFlutterBinding.ensureInitialized();
+
+    // 监测app是否初次启动
+    final prefs = await SharedPreferences.getInstance();
+    final isFirstRun = prefs.getBool('isFirstRun') ?? true;
+    if (isFirstRun) {
+      appFirstRun();
+      prefs.setBool('isFirstRun', false);
+    }
 
     // -------------------管理类初始化--------------------
     //1.本地通知初始化(单例模式)

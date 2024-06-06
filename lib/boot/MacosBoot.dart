@@ -6,9 +6,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:provider/provider.dart';
-
 import '../Layouts/macos/MacosLayout.dart';
-import '../common/GlobalManager.dart';
+import '../manager/GlobalManager.dart';
 import '../states/DarkState.dart';
 import '../states/DescState.dart';
 import '../states/ThemeState.dart';

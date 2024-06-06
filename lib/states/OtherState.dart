@@ -6,9 +6,7 @@
  * @Description: 其他额外共享状态  继承基类状态BasedState
  */
 
-import 'package:app_template/common/GlobalManager.dart';
 import 'package:app_template/models/index.dart';
-import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'AppState.dart';
 

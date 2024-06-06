@@ -14,7 +14,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
-import '../common/ToolsManager.dart';
+import '../manager/ToolsManager.dart';
 import '../pages/mobile/Page2.dart';
 import '../pages/mobile/Page3.dart';
 import '../pages/mobile/PageHome.dart';

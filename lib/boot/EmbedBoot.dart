@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import '../Layouts/embeding/EmbedLayout.dart';
-import '../common/GlobalManager.dart';
+import '../manager/GlobalManager.dart';
 import '../routes/index.dart';
 import '../states/DarkState.dart';
 import '../states/DescState.dart';

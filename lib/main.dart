@@ -1,4 +1,3 @@
-import 'package:app_template/boot/EmbedBoot.dart';
 // import 'package:app_template/boot/WindowsBoot.dart';
 import 'package:app_template/states/DarkState.dart';
 import 'package:app_template/states/DescState.dart';
@@ -10,13 +9,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:upgrader/upgrader.dart';
 import 'dart:io';
 //全局变量
 import 'boot/AndroidBoot.dart';
 import 'boot/WindowsBoot.dart';
 import 'boot/MacosBoot.dart';
-import 'common/GlobalManager.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+import 'common/AppCommon.dart';
+import 'manager/AppLifecycleStateManager.dart';
+import 'manager/GlobalManager.dart';
+
+BuildContext? appContext;
 
 void main() => GlobalManager.init().then((e) async {
       await EasyLocalization.ensureInitialized();
@@ -63,6 +69,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
+    appContext = context;
     print("Locale:${context.locale}");
     return MultiProvider(
         providers: [
@@ -98,7 +105,13 @@ class _AppState extends State<App> {
             hideFooterWhenNotFull: false,
             // 可以通过惯性滑动触发加载更多
             enableBallisticLoad: true,
-            child: const MaterialApplication()));
+            // 应用更新监测
+            child: UpgradeAlert(
+                // 样式
+                dialogStyle: UpgradeDialogStyle.material,
+                // 更新器
+                upgrader: appUpdater(),
+                child: const MaterialApplication())));
   }
 }
 
@@ -108,7 +121,50 @@ class MaterialApplication extends StatefulWidget {
   State<MaterialApplication> createState() => _MaterialApplicationState();
 }
 
-class _MaterialApplicationState extends State<MaterialApplication> {
+class _MaterialApplicationState extends State<MaterialApplication>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  // app生命周期函数
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // 应用程序进入前台时执行的操作
+      print('--------App has entered the foreground-------');
+      // 您可以在这里添加需要执行的代码，例如刷新数据
+      enterAppForward(appContext);
+    } else if (state == AppLifecycleState.paused) {
+      // 应用程序进入后台时执行的操作
+      print('--------App has entered the background--------');
+      // 您可以在这里添加需要执行的代码，例如保存数据
+      enterAppBackward(appContext);
+    } else if (state == AppLifecycleState.inactive) {
+      //应用程序处于非活动状态，并且不会接收用户输入
+      print("-------App has inactive---");
+      appInactive();
+    } else if (state == AppLifecycleState.detached) {
+      // 说明：应用程序仍在 Flutter 引擎中运行，但与宿主 View 分离。在移动平台中，这种状态通常出现在应用程序被完全退出之前，用于执行一些清理工作。
+      // 使用场景：在应用程序即将退出时执行清理操作，比如释放资源或保存最后的状态数据。
+
+      print("-------App has detached---");
+      appDetached();
+    } else if (state == AppLifecycleState.hidden) {
+      print(" ------------app has hidden--------");
+    }
+
+    super.didChangeAppLifecycleState(state);
+  }
+
   @override
   Widget build(BuildContext context) {
     // web平台

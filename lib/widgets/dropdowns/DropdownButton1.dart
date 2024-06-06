@@ -1,5 +1,3 @@
-import 'package:app_template/common/GlobalManager.dart';
-import 'package:app_template/common/NotificationsManager.dart';
 import 'package:app_template/states/DarkState.dart';
 import 'package:bruno/bruno.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -11,6 +9,8 @@ import 'package:material_dialogs/dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import 'package:provider/provider.dart';
+
+import '../../manager/NotificationsManager.dart';
 
 class DropdownButton1 extends StatefulWidget {
   const DropdownButton1({super.key});

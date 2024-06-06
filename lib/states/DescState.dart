@@ -6,13 +6,12 @@
  * @Description: app描述信息共享状态  继承基类状态AppState
  */
 
-
 import 'package:app_template/models/AppModel.dart';
 import 'package:app_template/states/AppState.dart';
 
-import '../common/GlobalManager.dart';
+import '../manager/GlobalManager.dart';
 
-class DescState  extends AppState{
+class DescState extends AppState {
   /*
   * desc:包括登录状态等用户属性状态
   */

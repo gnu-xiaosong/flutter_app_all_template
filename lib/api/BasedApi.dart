@@ -6,8 +6,8 @@
  * @Description: api请求基类
  */
 
-import 'package:app_template/common/GlobalManager.dart';
-import 'package:app_template/common/HttpManager.dart';
+import '../manager/GlobalManager.dart';
+import '../manager/HttpManager.dart';
 
 class BasedApi extends GlobalManager {
   //全局方法http

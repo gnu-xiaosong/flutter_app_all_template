@@ -7,10 +7,10 @@
  */
 
 import 'dart:math';
-
-import 'package:app_template/common/CustomPainterManager.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import '../../manager/CustomPainterManager.dart';
 
 /*核心概念：
 画布：
