@@ -9,6 +9,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //应用配置信息
+import '../database/LocalStorage.dart';
 import '../models/index.dart';
 //HttpManager管理工具类
 //本地通知管理
@@ -23,6 +24,9 @@ class GlobalManager {
   static bool get isRelease => const bool.fromEnvironment("dart.vm.product");
   // 2.全局配置静态
   static AppModel appConfigModel = ToolsManager.loadAppModelConfig();
+  // 3.初始化本地存储：sqlite3
+  static LocalDatabase database = LocalDatabase();
+
   /**************↑↑↑↑↑↑↑↑全局参数变量初始化操作↑↑↑↑↑↑↑↑***************/
 
   /****************↓↓↓↓↓↓工具类初始化操作↓↓↓↓↓↓↓**********************/

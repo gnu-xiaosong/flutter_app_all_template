@@ -1,9 +1,12 @@
 // import 'package:app_template/boot/WindowsBoot.dart';
+import 'package:app_template/database/LocalStorage.dart';
 import 'package:app_template/states/DarkState.dart';
 import 'package:app_template/states/DescState.dart';
 import 'package:app_template/states/OtherState.dart';
 import 'package:app_template/states/ThemeState.dart';
+import 'package:app_template/tool/create_database.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -28,6 +31,12 @@ BuildContext? appContext;
 
 void main() => GlobalManager.init().then((e) async {
       await EasyLocalization.ensureInitialized();
+
+      // 测试数据库
+      // 插入数据
+      GlobalManager.database
+          .into(GlobalManager.database.users)
+          .insert(UsersCompanion.insert(name: "xskj", age: 100));
 
       runApp(
           //屏幕适配:自适应大小

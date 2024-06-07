@@ -412,3 +412,42 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
 ![image-20240607201721615](project/README/image-20240607201721615.png)
 
 > 特别说明：对于ios由于没有测试设备，部分功能未配置，如果ios运行出现异常请耐心检查！
+
+* 2024.6.8  增加本地存储sqlite， 使用[drift](https://drift.simonbinder.eu/docs/getting-started/)包进行简化操作。
+
+  * 实例化：全局访问即可
+
+    ![image-20240608023205894](project/README/image-20240608023205894.png)
+
+  * 使用方法
+
+    * 在tables目录中定义数据库表，并更新LocalStorage.dart文件中
+
+      ![image-20240608021056342](project/README/image-20240608021056342.png)
+
+      ```dart
+      @DriftDatabase(tables: [
+        User,
+      ])
+      ```
+
+    * 执行命令：`dart run build_runner build`，来更新生成LocalStorage.g.dart文件
+
+    * 开始使用
+
+      ```dart
+      void main() async {
+        WidgetsFlutterBinding.ensureInitialized();
+        
+        // 初始化LocalDatabase()
+        final database = LocalDatabase();
+        
+        // 执行事务操作
+        List<User> allItems = await database.select(database.todoItems).get();
+      
+        print('items in database: $allItems');
+      }
+      ```
+
+
+
