@@ -329,6 +329,8 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
 
 - 2024.3.3  修复bottom底部样式9的bug以及垂直滑动弹窗点击和水平滑动时也弹出的bug
 
+- 2024.3.4  屏幕适配方案：ScreenUtil 每次设置大小时，数字后面加上.w,.h,.sp   详情见:[ScreenUtil](https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_CN.md) 
+
 - 2024.6.4  google_fonts bug修复
 
   - 方法一: 指定google_fonts版本为6.1.0   默认方法
@@ -357,3 +359,56 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
 
   <img src="project/README/image-20240607051458982.png" alt="image-20240607051458982" style="zoom:50%;" /><img src="project/README/image-20240607051529570.png" alt="image-20240607051529570" style="zoom:50%;" />
 
+* 2024.6.7 更改平台检测代码：引入[ResponsiveBuilder](https://pub.dev/packages/responsive_builder)包
+
+  <img src="project/README/image-20240607113426875.png" alt="image-20240607113426875" style="zoom:33%;" />
+
+* 2024.6.7 增加websocketServer类和WebsocketClient类，用于启用本地websocket服务和websocket客户端，继承该类并重写相关方法即可。
+
+  * WebsocketClient
+
+    ```dart
+    import 'WebsocketClient.dart';
+    
+    main() {
+      // // 实例化WebSocketServer
+      // MyWebsocketServer myWebsocketServer = MyWebsocketServer();
+      //
+      // // 启动server
+      // myWebsocketServer.start();
+    
+      // 初始化
+      WebsocketClient websocketClient = WebsocketClient(ip: 'localhost');
+    
+      // 连接
+      websocketClient.connnect();
+    }
+    ```
+
+  * websocketServer
+
+    ```dart
+    import 'dart:io';
+    
+    import 'WebsocketServer.dart';
+    
+    class MyWebsocketServer extends WebSocketServer {
+      @override
+      void messageHandler(WebSocket webSocket, message) {
+        print("-----$message-----");
+        // TODO: implement messageHandler
+        super.messageHandler(webSocket, message);
+      }
+    
+      @override
+      void broadcast(String message) {
+        // TODO: implement broadcast
+        print("-----broadcast $message-----");
+        super.broadcast(message);
+      }
+    }
+    ```
+
+![image-20240607201721615](project/README/image-20240607201721615.png)
+
+> 特别说明：对于ios由于没有测试设备，部分功能未配置，如果ios运行出现异常请耐心检查！

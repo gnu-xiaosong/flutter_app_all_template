@@ -74,6 +74,8 @@ dependencies:
   local_auth: ^2.1.8
   native_auth: ^1.0.6
   secure_app_switcher: ^0.1.0+1
+  responsive_builder: ^0.7.0
+  web_socket_channel: ^2.4.0
 
 #开发环境依赖
 dev_dependencies:

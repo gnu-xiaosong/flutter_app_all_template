@@ -9,11 +9,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upgrader/upgrader.dart';
 import 'dart:io';
 //全局变量
 import 'boot/AndroidBoot.dart';
+import 'boot/EmbedBoot.dart';
 import 'boot/WindowsBoot.dart';
 import 'boot/MacosBoot.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -28,9 +30,9 @@ void main() => GlobalManager.init().then((e) async {
       await EasyLocalization.ensureInitialized();
 
       runApp(
-          //屏幕适配
+          //屏幕适配:自适应大小
           ScreenUtilInit(
-              designSize: const Size(360, 690),
+              designSize: Size(360, 690),
               minTextAdapt: true,
               splitScreenMode: true,
               builder: (_, child) => GetMaterialApp(
@@ -167,31 +169,39 @@ class _MaterialApplicationState extends State<MaterialApplication>
 
   @override
   Widget build(BuildContext context) {
-    // web平台
-    try {
-      if (Platform.isIOS) {
-        print("检测为非web平台");
-      }
-    } catch (e, r) {
-      //默认同windows端
-      return WindowsBoot();
-    }
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        // Check the sizing information here and return your UI
+        if (sizingInformation.deviceScreenType == DeviceScreenType.desktop) {
+          // desktop
+          if (Platform.isWindows) {
+            // windows
+            return WindowsBoot();
+          }
+          return MacosBoot();
+        }
 
-    // 根据平台自定义选着平台
-    if (Platform.isIOS) {
-      // 1.移动端(ios端)
-      // return ;
-    } else if (Platform.isWindows) {
-      // 2.windows端
-      return WindowsBoot();
-    } else if (Platform.isMacOS) {
-      // 3.macos端
-      return MacosBoot();
-    } else if (Platform.isAndroid) {
-      // 4.Android
-      return AndroidBoot();
-    }
+        if (sizingInformation.deviceScreenType == DeviceScreenType.tablet) {
+          // table
+          return EmbedBoot();
+        }
 
-    return WindowsBoot();
+        if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
+          // mobile
+          if (Platform.isIOS) {
+            // 1.移动端(ios端)
+            // return ;
+          }
+          return AndroidBoot();
+        }
+
+        if (sizingInformation.deviceScreenType == DeviceScreenType.watch) {
+          // watch
+          return EmbedBoot();
+        }
+
+        return AndroidBoot();
+      },
+    );
   }
 }
