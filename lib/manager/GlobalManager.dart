@@ -16,6 +16,7 @@ import '../models/index.dart';
 import './NotificationsManager.dart';
 import 'AppLifecycleStateManager.dart';
 import 'HttpManager.dart';
+import 'TestManager.dart';
 import 'ToolsManager.dart';
 
 class GlobalManager {
@@ -47,6 +48,9 @@ class GlobalManager {
   //初始化全局信息，会在APP启动时执行
   static Future init() async {
     WidgetsFlutterBinding.ensureInitialized();
+
+    // 调试管理器模块
+    TestManager.debug();
 
     // 监测app是否初次启动
     final prefs = await SharedPreferences.getInstance();

@@ -3,11 +3,11 @@
 part of 'LocalStorage.dart';
 
 // ignore_for_file: type=lint
-class $UsersTable extends Users with TableInfo<$UsersTable, User> {
+class $UserTable extends User with TableInfo<$UserTable, UserData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $UsersTable(this.attachedDatabase, [this._alias]);
+  $UserTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
@@ -33,9 +33,9 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'users';
+  static const String $name = 'user';
   @override
-  VerificationContext validateIntegrity(Insertable<User> instance,
+  VerificationContext validateIntegrity(Insertable<UserData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -60,9 +60,9 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  User map(Map<String, dynamic> data, {String? tablePrefix}) {
+  UserData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return User(
+    return UserData(
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       name: attachedDatabase.typeMapping
@@ -73,16 +73,16 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   }
 
   @override
-  $UsersTable createAlias(String alias) {
-    return $UsersTable(attachedDatabase, alias);
+  $UserTable createAlias(String alias) {
+    return $UserTable(attachedDatabase, alias);
   }
 }
 
-class User extends DataClass implements Insertable<User> {
+class UserData extends DataClass implements Insertable<UserData> {
   final int id;
   final String name;
   final int age;
-  const User({required this.id, required this.name, required this.age});
+  const UserData({required this.id, required this.name, required this.age});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -92,18 +92,18 @@ class User extends DataClass implements Insertable<User> {
     return map;
   }
 
-  UsersCompanion toCompanion(bool nullToAbsent) {
-    return UsersCompanion(
+  UserCompanion toCompanion(bool nullToAbsent) {
+    return UserCompanion(
       id: Value(id),
       name: Value(name),
       age: Value(age),
     );
   }
 
-  factory User.fromJson(Map<String, dynamic> json,
+  factory UserData.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return User(
+    return UserData(
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
       age: serializer.fromJson<int>(json['age']),
@@ -119,14 +119,14 @@ class User extends DataClass implements Insertable<User> {
     };
   }
 
-  User copyWith({int? id, String? name, int? age}) => User(
+  UserData copyWith({int? id, String? name, int? age}) => UserData(
         id: id ?? this.id,
         name: name ?? this.name,
         age: age ?? this.age,
       );
   @override
   String toString() {
-    return (StringBuffer('User(')
+    return (StringBuffer('UserData(')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('age: $age')
@@ -139,28 +139,28 @@ class User extends DataClass implements Insertable<User> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is User &&
+      (other is UserData &&
           other.id == this.id &&
           other.name == this.name &&
           other.age == this.age);
 }
 
-class UsersCompanion extends UpdateCompanion<User> {
+class UserCompanion extends UpdateCompanion<UserData> {
   final Value<int> id;
   final Value<String> name;
   final Value<int> age;
-  const UsersCompanion({
+  const UserCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
     this.age = const Value.absent(),
   });
-  UsersCompanion.insert({
+  UserCompanion.insert({
     this.id = const Value.absent(),
     required String name,
     required int age,
   })  : name = Value(name),
         age = Value(age);
-  static Insertable<User> custom({
+  static Insertable<UserData> custom({
     Expression<int>? id,
     Expression<String>? name,
     Expression<int>? age,
@@ -172,9 +172,9 @@ class UsersCompanion extends UpdateCompanion<User> {
     });
   }
 
-  UsersCompanion copyWith(
+  UserCompanion copyWith(
       {Value<int>? id, Value<String>? name, Value<int>? age}) {
-    return UsersCompanion(
+    return UserCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
       age: age ?? this.age,
@@ -198,7 +198,7 @@ class UsersCompanion extends UpdateCompanion<User> {
 
   @override
   String toString() {
-    return (StringBuffer('UsersCompanion(')
+    return (StringBuffer('UserCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('age: $age')
@@ -209,10 +209,10 @@ class UsersCompanion extends UpdateCompanion<User> {
 
 abstract class _$LocalDatabase extends GeneratedDatabase {
   _$LocalDatabase(QueryExecutor e) : super(e);
-  late final $UsersTable users = $UsersTable(this);
+  late final $UserTable user = $UserTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [users];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [user];
 }

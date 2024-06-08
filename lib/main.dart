@@ -7,6 +7,7 @@ import 'package:app_template/states/ThemeState.dart';
 import 'package:app_template/tool/create_database.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:drift/drift.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,7 @@ import 'boot/MacosBoot.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'common/AppCommon.dart';
+import 'database/daos/UserDao.dart';
 import 'manager/AppLifecycleStateManager.dart';
 import 'manager/GlobalManager.dart';
 
@@ -31,12 +33,6 @@ BuildContext? appContext;
 
 void main() => GlobalManager.init().then((e) async {
       await EasyLocalization.ensureInitialized();
-
-      // 测试数据库
-      // 插入数据
-      GlobalManager.database
-          .into(GlobalManager.database.users)
-          .insert(UsersCompanion.insert(name: "xskj", age: 100));
 
       runApp(
           //屏幕适配:自适应大小
