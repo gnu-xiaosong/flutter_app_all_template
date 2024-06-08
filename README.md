@@ -449,5 +449,9 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
       }
       ```
 
+* 2024.6.9 修复drift用于本地数据库存储的bug，并封装ADO类数据库常见事务操作
 
+  <img src="project/README/image-20240609051918018.png" alt="image-20240609051918018" style="zoom:50%;" />
+
+  
 

@@ -1,10 +1,8 @@
 /*
 desc: UserDao类DAO操作: DAO类集中管理 CRUD 操作
 */
-
 import 'package:app_template/database/LocalStorage.dart';
 import 'package:app_template/database/daos/BaseDao.dart';
-
 import '../../manager/GlobalManager.dart';
 import '../tables/UserTable.dart';
 
@@ -47,23 +45,34 @@ class UserDao implements BaseDao<User> {
     return result;
   }
 
+  // 更新数据
+  Future<int> updateTest(item) async {
+    // 获取database单例
+    var db = GlobalManager.database;
+    int result = 0;
+    await db.update(db.user)
+      ..where((tbl) => tbl.name.equals(item))
+      ..write(const UserData(id: 100, name: "xskj", age: 18)).then((value) {
+        print("update result: $value");
+        result = value;
+      });
+
+    return result;
+  }
+
   // 删除数据
-  @override
-  Future<int> deleteItem(item) {
-    // TODO: implement deleteItem
-    throw UnimplementedError();
-  }
+  int deleteTest(item) {
+    // 获取database单例
+    var db = GlobalManager.database;
+    // 删除条数
+    int result = 0;
+    db.delete(db.user)
+      ..where((tbl) => tbl.name.equals(item))
+      ..go().then((value) {
+        print("delete data count: $value");
+        result = value;
+      });
 
-  //更新数据
-  @override
-  Future<bool> updateItem(item) {
-    // TODO: implement updateItem
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<List<User>> selectItems(item) {
-    // TODO: implement selectItems
-    throw UnimplementedError();
+    return result;
   }
 }
