@@ -14,11 +14,12 @@ import 'package:flutter/material.dart';
 //导入layout文件
 import '../Layouts/mobile/MobileLayout1.dart';
 import '../pages/Introduction/introduction2/introduction_animation_screen.dart';
+import '../pages/adaptive/Home.dart';
 import '../pages/logins/login1/Login1.dart';
 
 //路由表
 Map<String, WidgetBuilder> routes = {
-  "/": (context) => const MobileLayout1(), //const MobileLayout1(),
+  "/": (context) => const AdaptiveHome(), //const MobileLayout1(),
   //const MobileLayout1(), //注册根路由:默认第一个为系统根路由： initialRoute: "/",
   "home": (context) => const MobileLayout1(), // home 页路由
   "introduce": (context) => Introduction1(), //介绍页路由

@@ -12,7 +12,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   shared_preferences: ^2.2.2
   provider: ^6.1.1
   json_annotation: any
@@ -81,6 +80,9 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.23
   path_provider: ^2.1.3
   path: ^1.8.3
+  responsive_framework: ^1.4.0
+  flutter_adaptive_scaffold: ^0.1.10+2
+
 
 #开发环境依赖
 dev_dependencies:

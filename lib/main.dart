@@ -1,4 +1,5 @@
 // import 'package:app_template/boot/WindowsBoot.dart';
+import 'package:app_template/config/AppConfig.dart';
 import 'package:app_template/database/LocalStorage.dart';
 import 'package:app_template/states/DarkState.dart';
 import 'package:app_template/states/DescState.dart';
@@ -14,10 +15,11 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:upgrader/upgrader.dart';
 import 'dart:io';
 //全局变量
+import 'boot/AdaptiveBoot.dart';
 import 'boot/AndroidBoot.dart';
 import 'boot/EmbedBoot.dart';
 import 'boot/WindowsBoot.dart';
@@ -33,29 +35,31 @@ BuildContext? appContext;
 
 void main() => GlobalManager.init().then((e) async {
       await EasyLocalization.ensureInitialized();
-
-      runApp(
+      // 设置全局断点
+      ResponsiveSizingConfig.instance.setCustomBreakpoints(
+        const ScreenBreakpoints(desktop: 800, tablet: 550, watch: 200),
+      );
+      runApp(ScreenUtilInit(
           //屏幕适配:自适应大小
-          ScreenUtilInit(
-              designSize: Size(360, 690),
-              minTextAdapt: true,
-              splitScreenMode: true,
-              builder: (_, child) => GetMaterialApp(
-                      home: EasyLocalization(
-                          supportedLocales: const [
-                        Locale('en', 'US'),
-                        Locale('zh', 'CN')
-                      ],
-                          path:
-                              'assets/translations', // <-- change the path of the translation files
-                          child: const App()))));
+          designSize: Size(360, 690),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (_, child) => GetMaterialApp(
+                  home: EasyLocalization(
+                      supportedLocales: const [
+                    Locale('en', 'US'),
+                    Locale('zh', 'CN')
+                  ],
+                      path:
+                          'assets/translations', // <-- change the path of the translation files
+                      child: const App()))));
 
       try {
         // 初始化自定义窗口
         if (Platform.isWindows || Platform.isMacOS || Platform.isLinux)
           doWhenWindowReady(() {
             final win = appWindow;
-            const initialSize = Size(1000, 650);
+            const initialSize = Size(500, 650);
             win.minSize = initialSize;
             win.size = initialSize;
             win.alignment = Alignment.center;
@@ -174,39 +178,53 @@ class _MaterialApplicationState extends State<MaterialApplication>
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (context, sizingInformation) {
-        // Check the sizing information here and return your UI
-        if (sizingInformation.deviceScreenType == DeviceScreenType.desktop) {
-          // desktop
-          if (Platform.isWindows) {
-            // windows
-            return WindowsBoot();
-          }
-          return MacosBoot();
-        }
+    // 自适应布局
+    return ResponsiveBreakpoints.builder(
+        // 屏幕断点
+        breakpoints: [
+          const Breakpoint(start: 0, end: 450, name: MOBILE),
+          const Breakpoint(start: 451, end: 800, name: TABLET),
+          const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+          const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+        ],
+        child: ResponsiveBuilder(
+          builder: (context, sizingInformation) {
+            if (AppConfig.systemAdaptive) {
+              // 自适应系统
+              return const AdaptiveBoot();
+            }
+            // Check the sizing information here and return your UI
+            if (sizingInformation.deviceScreenType ==
+                DeviceScreenType.desktop) {
+              // desktop
+              if (Platform.isWindows) {
+                // windows
+                return WindowsBoot();
+              }
+              return MacosBoot();
+            }
 
-        if (sizingInformation.deviceScreenType == DeviceScreenType.tablet) {
-          // table
-          return EmbedBoot();
-        }
+            if (sizingInformation.deviceScreenType == DeviceScreenType.tablet) {
+              // table
+              return EmbedBoot();
+            }
 
-        if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
-          // mobile
-          if (Platform.isIOS) {
-            // 1.移动端(ios端)
-            // return ;
-          }
-          return AndroidBoot();
-        }
+            if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
+              // mobile
+              if (Platform.isIOS) {
+                // 1.移动端(ios端)
+                // return ;
+              }
+              return AndroidBoot();
+            }
 
-        if (sizingInformation.deviceScreenType == DeviceScreenType.watch) {
-          // watch
-          return EmbedBoot();
-        }
+            if (sizingInformation.deviceScreenType == DeviceScreenType.watch) {
+              // watch
+              return EmbedBoot();
+            }
 
-        return AndroidBoot();
-      },
-    );
+            return const AdaptiveBoot();
+          },
+        ));
   }
 }

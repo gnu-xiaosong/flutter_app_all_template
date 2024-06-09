@@ -39,6 +39,9 @@ import '../widgets/BottomNavigationBars/custom_bottom_bar.dart';
 import '../widgets/BottomNavigationBars/floating_bottom_navigation_bar.dart';
 
 class AppConfig extends ToolsManager {
+  // 是否启用自适应布局系统
+  static bool systemAdaptive = true;
+
   //引导页设置
   static List introduces = [
     {
@@ -127,6 +130,7 @@ class AppConfig extends ToolsManager {
   //app底部tabs标签设置
   static Color activeColor = Colors.blue; //选中颜色
   static Color unActiveColor = Colors.black; //未选中颜色
+
   //默认index=0
   static int currentIndex = 0;
   //-------------tabs设置----------

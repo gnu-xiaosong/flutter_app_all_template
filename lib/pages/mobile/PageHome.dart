@@ -42,13 +42,15 @@ BottomSheetScaffold _scaffold(BuildContext context) {
       //标题间隔
       titleSpacing: 1,
       //左边
-      leading: IconButton(
-          iconSize: 35,
-          icon: const Icon(Icons.account_circle_rounded),
-          onPressed: () {
-            print("open drawer");
-            Scaffold.of(context).openDrawer();
-          }),
+      leading: Builder(builder: (BuildContext context) {
+        return IconButton(
+            iconSize: 35,
+            icon: const Icon(Icons.account_circle_rounded),
+            onPressed: () {
+              print("open drawer");
+              Scaffold.of(context).openDrawer();
+            });
+      }),
       //标题--双标题
       title: Column(children: [
         Text(

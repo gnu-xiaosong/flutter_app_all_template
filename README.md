@@ -453,5 +453,5 @@ https://gnu-xiaosong.github.io/flutter_quaker_app/
 
   <img src="project/README/image-20240609051918018.png" alt="image-20240609051918018" style="zoom:50%;" />
 
-  
+* 2024.6.9 添加自适应布局Adaptive，同时增加设备模拟device_preview.
 

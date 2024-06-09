@@ -590,6 +590,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_adaptive_scaffold:
+    dependency: "direct main"
+    description:
+      name: flutter_adaptive_scaffold
+      sha256: "9a1d5e9f728815e27b7b612883db19107ba8a35a46a97c757ea00896cb027451"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.10+2"
   flutter_easyloading:
     dependency: "direct main"
     description:
@@ -1301,6 +1309,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.7.0"
+  responsive_framework:
+    dependency: "direct main"
+    description:
+      name: responsive_framework
+      sha256: "52367ab0c3479b3a5342dec3b74a3d47c4cc1b45bb5d38f720c2e002ebccd4ee"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.4.0"
   rolling_bottom_bar:
     dependency: "direct main"
     description:
